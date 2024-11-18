@@ -21,6 +21,10 @@ requirements:
     - cargo-bundle-licenses
     - m4
     - make
+  host:
+    - gmp
+    - mpc
+    - mpfr
 
 test:
   commands:
