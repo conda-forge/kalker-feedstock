@@ -1,5 +1,5 @@
 context:
-  version: 2.2.0
+  version: "2.2.1"
 
 package:
   name: kalker
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://github.com/PaddiM8/kalker/archive/v${{ version }}.tar.gz
-  sha256: 4f34d34e922308e586fd9f7077e1cba126f3e75d269f4859d0472bb565ce1d4d
+  sha256: a6ccf096301a37d2bbb14fdacfc8c801a8b058b0fd38929639d03c4868564adf
 
 build:
   number: 0
