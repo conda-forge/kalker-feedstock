@@ -4,7 +4,9 @@ set -o xtrace -o nounset -o pipefail -o errexit
 
 export CARGO_PROFILE_RELEASE_STRIP=symbols
 export CARGO_PROFILE_RELEASE_LTO=fat
-sed -i 's/\["mpfr"\]/["mpfr", "force-cross"]/' kalk/Cargo.toml
+sed -i 's/\[dependencies\]/[dependencies]\ngmp-mpfr-sys = { version = "*", features = ["*"], optional = true }/' kalk/Cargo.toml
+
+exit 1
 
 # check licenses
 cargo-bundle-licenses \
