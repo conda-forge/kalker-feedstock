@@ -7,7 +7,7 @@ export CARGO_PROFILE_RELEASE_LTO=fat
 echo "[dependencies.gmp-mpfr-sys]" >> cli/Cargo.toml
 echo 'version = "1.6"' >> cli/Cargo.toml
 echo 'default-features = false' >> cli/Cargo.toml
-echo 'features = ["mpfr", "force-cross"]' >> cli/Cargo.toml
+echo 'features = ["mpfr", "use-system-libs"]' >> cli/Cargo.toml
 
 # check licenses
 cargo-bundle-licenses \
