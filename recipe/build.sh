@@ -8,6 +8,7 @@ export CARGO_FEATURE_USE_SYSTEM_LIBS=1
 export CARGO_FEATURE_FORCE_CROSS=1
 
 # Shim hack to force gmp-mpfr-sys crate to use CFLAGS and LDFLAGS
+if [[ ${target_platform} == "osx-arm64" ]]; then
 tee ${BUILD_PREFIX}/bin/cc_shim << EOF
 #!/bin/sh
 if [[ "\$@" =~ system_* ]]; then
@@ -15,6 +16,11 @@ if [[ "\$@" =~ system_* ]]; then
 else
     exec \${CC} \${CFLAGS} \${LDFLAGS} "\$@"
 fi
+EOF
+else
+tee ${BUILD_PREFIX}/bin/cc_shim << EOF
+#!/bin/sh
+exec \${CC} \${CFLAGS} \${LDFLAGS} "\$@"
 EOF
 chmod +x ${BUILD_PREFIX}/bin/cc_shim
 export CC=${BUILD_PREFIX}/bin/cc_shim
