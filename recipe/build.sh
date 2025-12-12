@@ -5,6 +5,7 @@ set -o xtrace -o nounset -o pipefail -o errexit
 export CARGO_PROFILE_RELEASE_STRIP=symbols
 export CARGO_PROFILE_RELEASE_LTO=fat
 export CARGO_FEATURE_USE_SYSTEM_LIBS=1
+export CARGO_FEATURE_FORCE_CROSS=1
 
 # Shim hack to force gmp-mpfr-sys crate to use CFLAGS and LDFLAGS
 tee ${BUILD_PREFIX}/bin/cc_shim << EOF
