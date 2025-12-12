@@ -10,7 +10,11 @@ export CARGO_FEATURE_FORCE_CROSS=1
 # Shim hack to force gmp-mpfr-sys crate to use CFLAGS and LDFLAGS
 tee ${BUILD_PREFIX}/bin/cc_shim << EOF
 #!/bin/sh
-exec ${CC} ${CFLAGS} ${LDFLAGS} "\$@"
+if [[ "\$@" =~ system_* ]]; then
+    exec \${CC_FOR_BUILD} \${CFLAGS//\${PREFIX}/\${BUILD_PREFIX}} \${LDFLAGS//\${PREFIX}/\${BUILD_PREFIX}} "\$@"
+else
+    exec \${CC} \${CFLAGS} \${LDFLAGS} "\$@"
+fi
 EOF
 chmod +x ${BUILD_PREFIX}/bin/cc_shim
 export CC=${BUILD_PREFIX}/bin/cc_shim
