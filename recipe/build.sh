@@ -20,7 +20,7 @@ EOF
 else
 tee ${BUILD_PREFIX}/bin/cc_shim << EOF
 #!/bin/sh
-exec \${CC} \${CFLAGS} \${LDFLAGS} "\$@"
+exec ${CC} ${CFLAGS} ${LDFLAGS} "\$@"
 EOF
 fi
 chmod +x ${BUILD_PREFIX}/bin/cc_shim
